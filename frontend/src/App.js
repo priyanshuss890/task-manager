@@ -29,9 +29,7 @@ function App() {
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h1 style={{ textAlign: "center", color: "#333" }}>Task Manager</h1>
-
       <TaskForm API={API} onTaskAdded={fetchTasks} />
-
       <div style={{ margin: "20px 0", display: "flex", gap: "10px" }}>
         {["all", "pending", "in_progress", "completed"].map((s) => (
           <button
@@ -51,7 +49,6 @@ function App() {
           </button>
         ))}
       </div>
-
       {loading ? (
         <p>Loading tasks...</p>
       ) : (
