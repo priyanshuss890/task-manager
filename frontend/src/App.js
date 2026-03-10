@@ -22,10 +22,10 @@ function App() {
     }
   };
 
-  useEffect(() => {
+ useEffect(() => {
     fetchTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
-
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h1 style={{ textAlign: "center", color: "#333" }}>Task Manager</h1>
