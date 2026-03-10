@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
-const API = "http://localhost:5000/api";
+const API = "https://task-manager-05ko.onrender.com/api";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       const url = filter === "all" ? `${API}/tasks` : `${API}/tasks?status=${filter}`;
       const res = await axios.get(url);
@@ -20,12 +20,12 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
-
- useEffect(() => {
-    fetchTasks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
+
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h1 style={{ textAlign: "center", color: "#333" }}>Task Manager</h1>
